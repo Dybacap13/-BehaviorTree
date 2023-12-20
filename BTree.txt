@@ -15,4 +15,12 @@
 	.cpp
 	.xml
 	CMakeLists.txt
+
+Чтоб построить проект
+	mkdir build ; cd build
+	cmake ..
+	make
+
+Запустить		
+	./<имя_проекта>
 	
