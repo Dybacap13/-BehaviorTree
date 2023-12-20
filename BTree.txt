@@ -2,7 +2,7 @@
 Склонить с гита в любую папку
 	git clone https://github.com/BehaviorTree/BehaviorTree.CPP.git
 
-Установить зависимости
+Установить зависимости в BehaviorTree.CPP
 	BehaviorTree.CPP$ sudo apt-get install libzmq3-dev libboost-dev
 
 Построить
