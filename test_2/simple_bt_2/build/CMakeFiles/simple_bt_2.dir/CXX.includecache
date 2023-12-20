@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dybacap13/BTree/simple_bt_2/test.cpp
+behaviortree_cpp/bt_factory.h
+/home/dybacap13/BTree/simple_bt_2/behaviortree_cpp/bt_factory.h
+
