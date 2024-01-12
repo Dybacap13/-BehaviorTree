@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/nshc.h
+iostream
+-
+chrono
+-
+behaviortree_cpp/bt_factory.h
+../include/behaviortree_cpp/bt_factory.h
+behaviortree_cpp/action_node.h
+../include/behaviortree_cpp/action_node.h
+
+/home/dybacap13/BTree_oko/src/phantom.cpp
+nshc.h
+-
+

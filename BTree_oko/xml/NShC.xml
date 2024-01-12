@@ -1,0 +1,9 @@
+ <root BTCPP_format="4" >
+
+
+<!--Дерево НШС - хз, что там вообще происходит-->
+    <BehaviorTree ID="NShC">
+        <CheckNShC   name="Check_NShC"/>
+    </BehaviorTree>
+
+ </root>

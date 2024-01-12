@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/phantom.dir/src/phantom.cpp.o  -o phantom  -Wl,-rpath,/usr/local/lib: /usr/local/lib/libbehaviortree_cpp.so 
