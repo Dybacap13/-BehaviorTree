@@ -16,12 +16,12 @@ include_directories(
  ${catkin_INCLUDE_DIRS}
 )
 
-#add_executable(verification_device src/verification_device.cpp)
+add_executable(verification_device src/verification_device.cpp)
 
 add_executable(patient src/patient.cpp)
 
 
-#target_link_libraries(verification_device BT::behaviortree_cpp)
+target_link_libraries(verification_device BT::behaviortree_cpp)
 target_link_libraries(patient BT::behaviortree_cpp)
 
 
@@ -35,10 +35,10 @@ target_link_libraries(patient BT::behaviortree_cpp)
 
 include(GNUInstallDirs)
 
-# install(TARGETS verification_device
-#     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-#     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-# )
+install(TARGETS verification_device
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
 
 install(TARGETS patient
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
