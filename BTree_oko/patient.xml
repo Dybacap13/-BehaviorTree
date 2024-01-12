@@ -1,0 +1,76 @@
+ <root BTCPP_format="4" >
+
+<!--Работа с пациентом-->
+    <BehaviorTree ID="WorkPatient">
+        <Sequence name="root">
+
+        <!--cmd":"patient_mode"-->
+            <Fallback>
+                <Sequence>
+                    <PatientMode/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+        <!--"move":"patient_set".-->
+            <Fallback>
+                <Sequence>
+                    <PatientSet/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+       <!--Сюда нужно ввод какой-то фигни? -->
+            <Fallback>
+                <Sequence>
+                    <PatientSize/>
+                    <PatientPos/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+         <!--Включаются лазеры позиционирования командой -->
+
+
+
+
+        <!--Включается ручной режим командой "move":"manual" -->
+          <Manual/>
+
+         <!--пункт 10 ?????-->
+
+
+
+        <!--Ренген контроль -->
+        <Fallback>
+            <SubTree ID="X_rayControl"/>
+            <SubTree ID="NShC"/>
+        </Fallback>
+
+
+        <!--Подаётся команда "movement_allowed":"false", запрещ ающ ая движение. -->
+        <MovementAllowedEnable/>
+
+
+        <!--Операция -->
+        <Delay delay_msec="5000">
+                       <SleepDelay name="SleepDelay"/>
+        </Delay>
+
+        <MovementAllowedDisenable/>
+        <!--"move":"patient_set".-->
+            <Fallback>
+                <Sequence>
+                    <PatientSet/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+        </Sequence>
+    </BehaviorTree>
+
+ </root>
