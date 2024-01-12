@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/BTree_oko.dir/main.cpp.o  -o BTree_oko  -Wl,-rpath,/usr/local/lib: /usr/local/lib/libbehaviortree_cpp.so 
