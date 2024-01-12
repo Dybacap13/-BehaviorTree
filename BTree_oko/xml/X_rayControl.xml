@@ -1,0 +1,25 @@
+ <root BTCPP_format="4" >
+
+
+
+<!--Выполняется рентген-контроль положения устройства верификации-->
+    <BehaviorTree ID="X_rayControl">
+        <RetryUntilSuccessful num_attempts="3">
+            <Sequence>
+                <Control_ray   name="control"/>
+
+                <CoordOffset   name="coord_offset"/>
+                <Fallback>
+                    <AutoExecute   name="auto_execute">
+                        <ReadySystem   name="ready_system"/>
+                    </AutoExecute>
+                    <SubTree ID="NShC"/>
+                </Fallback>
+            </Sequence>
+        </RetryUntilSuccessful>
+    </BehaviorTree>
+
+
+
+
+ </root>
