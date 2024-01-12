@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/patient.dir/src/patient.cpp.o  -o patient  -Wl,-rpath,/usr/local/lib: /usr/local/lib/libbehaviortree_cpp.so 

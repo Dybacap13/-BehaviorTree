@@ -1,7 +1,0 @@
-/home/dybacap13/BTree_oko/build/CMakeFiles/install/strip.dir
-/home/dybacap13/BTree_oko/build/CMakeFiles/install/local.dir
-/home/dybacap13/BTree_oko/build/CMakeFiles/edit_cache.dir
-/home/dybacap13/BTree_oko/build/CMakeFiles/install.dir
-/home/dybacap13/BTree_oko/build/CMakeFiles/list_install_components.dir
-/home/dybacap13/BTree_oko/build/CMakeFiles/rebuild_cache.dir
-/home/dybacap13/BTree_oko/build/CMakeFiles/patient.dir
