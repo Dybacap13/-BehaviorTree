@@ -10,7 +10,9 @@ find_package(catkin REQUIRED
       roscpp
       std_msgs
       roslib
-      oko_protocol
+      oko_msgs
+      geometry_msgs
+
  )
 find_package(behaviortree_cpp REQUIRED)
 
@@ -42,14 +44,33 @@ find_package(behaviortree_cpp REQUIRED)
 #)
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES
-  CATKIN_DEPENDS oko_protocol
-#  DEPENDS system_lib
+  INCLUDE_DIRS
+  LIBRARIES
+  CATKIN_DEPENDS geometry_msgs oko_msgs
+  DEPENDS
 )
 
 
 set( SOURCES
+        src/leaves/hydro_phantom_mode.cpp
+        src/leaves/patient_mode.cpp
+        src/leaves/ready_system.cpp
+        src/leaves/verify_mode.cpp
+        src/leaves/verify_set.cpp
+        src/leaves/verify_pos1.cpp
+        src/leaves/verify_pos2.cpp
+        src/leaves/verify_pos3.cpp
+        src/leaves/home.cpp
+        src/leaves/manual.cpp
+        src/leaves/movement_disenable.cpp
+        src/leaves/movement_enable.cpp
+        src/leaves/patient_pos.cpp
+        src/leaves/patient_set.cpp
+        src/leaves/patient_size.cpp  
+        src/leaves/phantom_set2.cpp
+        src/leaves/phantom_set3.cpp
+        src/leaves/phantom_pos.cpp
+        src/tree_ros.cpp
         src/main.cpp
         )
 
@@ -79,14 +100,12 @@ add_executable(verification_device ${SRC_VERIFICATION_DEVICE})
 add_executable(patient ${SRC_PATIENT})
 add_executable(phantom ${SRC_PHANTOM})
 add_executable(${PROJECT_NAME} ${SOURCES})
-#add_executable(test_create_model src/create_model.cpp)
 
 
 target_link_libraries(verification_device ${catkin_LIBRARIES} BT::behaviortree_cpp)
 target_link_libraries(patient ${catkin_LIBRARIES} BT::behaviortree_cpp)
 target_link_libraries(phantom ${catkin_LIBRARIES} BT::behaviortree_cpp)
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
-#target_link_libraries(test_create_model  ${catkin_LIBRARIES} BT::behaviortree_cpp)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} BT::behaviortree_cpp)
 
 include(GNUInstallDirs)
 
@@ -101,6 +120,11 @@ install(TARGETS patient
 )
 
 install(TARGETS phantom
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )

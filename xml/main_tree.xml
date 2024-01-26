@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="MainTree">
+    <Repeat num_cycles="5">
+      <Sequence>
+        <ReadySystem/>
+        <IfThenElse _while="man_mode == &quot;HYDRO_PHANTOM_MODE&quot;">
+          <ReadySystem/>
+        </IfThenElse>
+        <IfThenElse _while="man_mode == &quot;PATIENT_MODE&quot;">
+          <ReadySystem/>
+        </IfThenElse>
+        <IfThenElse _while="man_mode == &quot;VERIFY_MODE&quot;">
+          <ReadySystem/>
+        </IfThenElse>
+      </Sequence>
+    </Repeat>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="ReadySystem"/>
+  </TreeNodesModel>
+
+</root>

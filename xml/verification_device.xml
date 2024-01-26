@@ -1,0 +1,82 @@
+ <root BTCPP_format="4" >
+
+<!--Работа с устройством верификации-->
+    <BehaviorTree ID="VerificationDevice">
+        <Sequence name="root">
+            <!--Первая ветка  "cmd":"verify_mode"-->
+            <Fallback>
+                <Sequence>
+                    <VerifyMode/>
+                    <ReadySystem/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+            <!--Вторая ветка "move":"verify_set". -->
+            <Fallback>
+                <Sequence>
+                    <VerifySet />
+                    <ReadySystem/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+            <!--Третья ветка Медработник устанавливает и закрепляет устройство верификации на кресле. -->
+            <Delay delay_msec="5000">
+                           <SleepDelay name="SleepDelay"/>
+            </Delay>
+
+            <!--Четвертая ветка move":"verify_pos1" -->
+            <Fallback>
+                <Sequence>
+                    <VerifyPos1   name="verify_pos1"/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+            <!--Пятая ветка рентген-контроль" -->
+            <Fallback>
+                <SubTree ID="X_rayControl"/>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+            <!--Шестая ветка "move":"verify_pos2"." -->
+            <VerifyPos2   name="verify_pos2"/>
+            <Fallback>
+                <SubTree ID="X_rayControl"/>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+            <!--Седьмая ветка "move":"verify_pos3"." -->
+            <VerifyPos3   name="verify_pos3"/>
+            <Fallback>
+                <SubTree ID="X_rayControl"/>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+            <!--Восьмая ветка move":"verify_set"" -->
+            <Fallback>
+                <Sequence>
+                    <VerifySet   name="verify_set"/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+            <!--Девятая ветка Медработник снимает устройство верификации с кресла и убирает его. -->
+            <Delay delay_msec="5000">
+                           <SleepDelay name="SleepDelay"/>
+            </Delay>
+
+            <!--Десятая ветка "move":"home" -->
+            <Fallback>
+                <Sequence>
+                    <Home   name="home"/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+        </Sequence>
+    </BehaviorTree>
+ </root>

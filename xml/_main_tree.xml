@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="MainTree">
+    <Repeat num_cycles="10">
+      <Sequence>
+        <ReadySystem/>
+        <IfThenElse _while="man_mode == &quot;HYDRO_PHANTOM_MODE&quot;">
+          <ReadySystem/>
+          <SubTree ID="Phantom"/>
+        </IfThenElse>
+        <IfThenElse _while="man_mode == &quot;PATIENT_MODE&quot;&#10;">
+          <ReadySystem/>
+          <SubTree ID="WorkPatient"/>
+        </IfThenElse>
+        <IfThenElse _while="man_mode == &quot;VERIFY_MODE&quot;">
+          <ReadySystem/>
+          <SubTree ID="VerificationDevice"/>
+        </IfThenElse>
+      </Sequence>
+    </Repeat>
+  </BehaviorTree>
+
+  <BehaviorTree ID="NShC">
+    <AlwaysSuccess/>
+  </BehaviorTree>
+
+  <BehaviorTree ID="Phantom">
+    <AlwaysSuccess/>
+  </BehaviorTree>
+
+  <BehaviorTree ID="VerificationDevice">
+    <Sequence>
+      <Fallback>
+        <Sequence>
+          <ReadySystem/>
+          <VerifySet/>
+        </Sequence>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Delay delay_msec="10">
+        <ReadySystem/>
+      </Delay>
+      <Fallback>
+        <Sequence>
+          <ReadySystem/>
+          <VerifyPos1/>
+        </Sequence>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Fallback>
+        <SubTree ID="X_rayControl"/>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Fallback>
+        <Sequence>
+          <ReadySystem/>
+          <VerifyPos2/>
+        </Sequence>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Fallback>
+        <SubTree ID="X_rayControl"/>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Fallback>
+        <Sequence>
+          <ReadySystem/>
+          <VerifyPos3/>
+        </Sequence>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Fallback>
+        <SubTree ID="X_rayControl"/>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Fallback>
+        <Sequence>
+          <ReadySystem/>
+          <VerifySet/>
+        </Sequence>
+        <SubTree ID="NShC"/>
+      </Fallback>
+      <Delay delay_msec="10">
+        <ReadySystem/>
+      </Delay>
+      <Fallback>
+        <Sequence>
+          <ReadySystem/>
+          <Home/>
+        </Sequence>
+        <SubTree ID="NShC"/>
+      </Fallback>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="WorkPatient">
+    <AlwaysSuccess/>
+  </BehaviorTree>
+
+  <BehaviorTree ID="X_rayControl">
+    <AlwaysSuccess/>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="Home"/>
+    <Action ID="ReadySystem"/>
+    <Action ID="VerifyPos1"/>
+    <Action ID="VerifyPos2"/>
+    <Action ID="VerifyPos3"/>
+    <Action ID="VerifySet"/>
+  </TreeNodesModel>
+
+</root>

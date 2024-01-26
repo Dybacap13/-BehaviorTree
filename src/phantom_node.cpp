@@ -25,10 +25,10 @@ int main()
       "PhantomPos", std::bind(&PhantomMode ::phantomPos, &phantom_mode));
 
   factory.registerSimpleAction("Home",
-                               std::bind(&PhantomMode ::home, &phantom_mode));
+                               std::bind(&PhantomMode ::Home, &phantom_mode));
 
   factory.registerSimpleAction(
-      "SleepDelay", std::bind(&PhantomMode ::sleepDelay, &phantom_mode));
+      "SleepDelay", std::bind(&PhantomMode ::SleepDelay, &phantom_mode));
 
   MovementAllowed movement_allowed;
 

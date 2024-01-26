@@ -1,37 +1,32 @@
 #include <x_ray_control.h>
 #include <nshc.h>
 #include <verification_device/verification_device.h>
-//#include <ready_system.h>
+#include <ready_system.h>
 int main()
 {
   BT::BehaviorTreeFactory factory;
-  //factory.registerSimpleCondition("ReadySystem", std::bind(ReadySystem));
+  factory.registerSimpleCondition("ReadySystem", std::bind(ReadySystem));
 
   MoveVerifyMode move_verify_mode;
   factory.registerSimpleAction(
-      "VerifyMode", std::bind(&MoveVerifyMode ::verifyMode, &move_verify_mode));
+      "VerifyMode", std::bind(&MoveVerifyMode ::VerifyMode, &move_verify_mode));
 
   factory.registerSimpleAction(
-      "VerifySet", std::bind(&MoveVerifyMode ::verifySet, &move_verify_mode));
+      "VerifySet", std::bind(&MoveVerifyMode ::VerifySet, &move_verify_mode));
 
   factory.registerSimpleAction(
-      "VerifyPos1", std::bind(&MoveVerifyMode ::verifyPos1, &move_verify_mode));
+      "VerifyPos1", std::bind(&MoveVerifyMode ::VerifyPos1, &move_verify_mode));
   factory.registerSimpleAction(
-      "VerifyPos3", std::bind(&MoveVerifyMode ::verifyPos3, &move_verify_mode));
-
-  factory.registerSimpleAction(
-      "VerifyPos2", std::bind(&MoveVerifyMode ::verifyPos2, &move_verify_mode));
+      "VerifyPos3", std::bind(&MoveVerifyMode ::VerifyPos3, &move_verify_mode));
 
   factory.registerSimpleAction(
-      "Home", std::bind(&MoveVerifyMode ::home, &move_verify_mode));
+      "VerifyPos2", std::bind(&MoveVerifyMode ::VerifyPos2, &move_verify_mode));
 
   factory.registerSimpleAction(
-      "SleepDelay", std::bind(&MoveVerifyMode ::sleepDelay, &move_verify_mode));
+      "Home", std::bind(&MoveVerifyMode ::Home, &move_verify_mode));
 
-factory.registerSimpleAction(
-      "ReadySystem", std::bind(&MoveVerifyMode ::readySystem, &move_verify_mode));
-
-
+  factory.registerSimpleAction(
+      "SleepDelay", std::bind(&MoveVerifyMode ::SleepDelay, &move_verify_mode));
 
   X_rayControl x_ray_control;
 

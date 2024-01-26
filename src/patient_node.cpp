@@ -1,22 +1,18 @@
 #include <x_ray_control.h>
 #include <nshc.h>
 #include <patient/patient.h>
+#include <ready_system.h>
 #include <behaviortree_cpp/xml_parsing.h>
-
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <memory>
 
-
-int main(int argc, char **argv)
+int main()
 {
-  ros::init(argc, argv, "behavior_tree_patient");
-  ros::NodeHandle nh;
-
   BT::BehaviorTreeFactory factory;
 
-  //factory.registerSimpleCondition("ReadySystem", std::bind(ReadySystem));
+  factory.registerSimpleCondition("ReadySystem", std::bind(ReadySystem));
 
   MoveWithSetCommands move_with_set_commands;
 
@@ -34,10 +30,10 @@ int main(int argc, char **argv)
       "MovementAllowedDisenable",
       std::bind(&MovementAllowed ::movementDisenable, &movement_allowed));
 
-  PatientWork patient_work(nh);
+  PatientWork patient_work;
 
-  // factory.registerSimpleAction(
-  //     "PatientMode", std::bind(&PatientWork ::patientMode, &patient_work));
+  factory.registerSimpleAction(
+      "PatientMode", std::bind(&PatientWork ::patientMode, &patient_work));
 
   factory.registerSimpleAction(
       "PatientSet", std::bind(&PatientWork ::patientSet, &patient_work));
@@ -50,9 +46,6 @@ int main(int argc, char **argv)
 
   factory.registerSimpleAction(
       "SleepDelay", std::bind(&PatientWork ::sleepDelay, &patient_work));
-
-factory.registerSimpleAction(
-      "ReadySystem", std::bind(&PatientWork ::readySystem, &patient_work));
 
   X_rayControl x_ray_control;
 
@@ -74,20 +67,19 @@ factory.registerSimpleAction(
   factory.registerBehaviorTreeFromFile(patient_work.path_to_pack + patient_work.relative_path_to_xml_x_ray_control);
   auto tree = factory.createTree("WorkPatient");
 
-  // std::string path_to_folder = patient_work.path_to_pack + "/xml/";
+  std::string path_to_folder = patient_work.path_to_pack + "/xml/";
 
-  // std::string file_name = path_to_folder + "_models.xml";
-  // std::fstream models_file;
+  std::string file_name = path_to_folder + "_patient_tree.xml";
+  std::fstream models_file;
 
-  // models_file.open(file_name, std::fstream::out);
+  models_file.open(file_name, std::fstream::out);
 
-  // if (!models_file.is_open())
-  //   throw std::runtime_error("Models file is not opened");
+  if (!models_file.is_open())
+    throw std::runtime_error("Models file is not opened");
 
-  // models_file << BT::writeTreeNodesModelXML(factory, false);
-  // models_file.close();
-
-  tree.tickWhileRunning();
+  models_file << BT::writeTreeNodesModelXML(factory, false);
+  models_file.close();
+  //tree.tickWhileRunning();
 
   return 0;
 }

@@ -7,20 +7,11 @@ PhantomMode::PhantomMode()
 
 }
 
-
-//*************************************************************************
 BT::NodeStatus PhantomMode::hydroPhantomMode()
 {
-  // responce = robot_controller.setMode("hydro_phantom_mode");
-  // if (robot_controller.getMode == responce ){
-  //   std::cout << "Команда:hydro_phantom_mode -> SUCCESS" << std::endl;
-  //   return BT::NodeStatus::SUCCESS;
-  // }
-  std::cout << "Команда:hydro_phantom_mode -> SUCCESS" << std::endl;
+  std::cout << "Подаётся команда cmd hydro_phantom_mode SUCCESS" << std::endl;
   return BT::NodeStatus::SUCCESS;
 }
-//*************************************************************************
-
 
 BT::NodeStatus PhantomMode::phantomSet2()
 {
@@ -40,13 +31,13 @@ BT::NodeStatus PhantomMode::phantomPos()
   return BT::NodeStatus::SUCCESS;
 }
 
-BT::NodeStatus PhantomMode::home()
+BT::NodeStatus PhantomMode::Home()
 {
   std::cout << " move:home SUCCESS" << std::endl;
   return BT::NodeStatus::SUCCESS;
 }
 
-BT::NodeStatus PhantomMode::sleepDelay()
+BT::NodeStatus PhantomMode::SleepDelay()
 {
   std::cout << "Работает медработник- задержка SUCCESS" << std::endl;
   // std::this_thread::sleep_for(5s);
@@ -55,7 +46,6 @@ BT::NodeStatus PhantomMode::sleepDelay()
 
 MovementAllowed::MovementAllowed()
 {
-  
 }
 
 BT::NodeStatus MovementAllowed::movementEnable()

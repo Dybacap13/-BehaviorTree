@@ -1,0 +1,103 @@
+ <root BTCPP_format="4" >
+
+<!--Работа с устройством верификации-->
+    <BehaviorTree ID="Phantom">
+        <Sequence name="root">
+
+        <!--"cmd":"hydro_phantom_mode"-->
+            <Fallback>
+                <Sequence>
+                    <HydroPhantomMode/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+
+        <!--Подаётся команда "move":"phantom_set2"-->
+            <Fallback>
+                <Sequence>
+                    <PhantomSet2/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+        <!--Медработник -->
+        <Delay delay_msec="5000">
+                       <SleepDelay name="SleepDelay"/>
+        </Delay>
+
+        <!--Подаётся команда "move":"phantom_set3".-->
+            <Fallback>
+                <Sequence>
+                    <PhantomSet3/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+
+        <!--Медработник -->
+        <Delay delay_msec="5000">
+                       <SleepDelay name="SleepDelay"/>
+        </Delay>
+
+
+        <!--Подаётся команда "move":"phantom_pos".-->
+            <Fallback>
+                <Sequence>
+                    <PhantomPos/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+        <!--11 ??????.-->
+
+        <MovementAllowedDisenable/>
+
+        <!--настройка пика Брэгга-->
+
+
+        <MovementAllowedEnable/>
+
+        <!--Подаётся команда "move":"phantom_set3".-->
+            <Fallback>
+                <Sequence>
+                    <PhantomSet3/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+        <!--Медработник -->
+        <Delay delay_msec="5000">
+                       <SleepDelay name="SleepDelay"/>
+        </Delay>
+
+        <!--Подаётся команда "move":"phantom_set2"-->
+            <Fallback>
+                <Sequence>
+                    <PhantomSet2/>
+                    <ReadySystem   name="ready_system"/>
+                </Sequence>
+                <SubTree ID="NShC"/>
+            </Fallback>
+
+        <!--"move":"home" -->
+        <Fallback>
+            <Sequence>
+                <Home   name="home"/>
+                <ReadySystem   name="ready_system"/>
+            </Sequence>
+            <SubTree ID="NShC"/>
+        </Fallback>
+
+
+
+
+
+        </Sequence>
+    </BehaviorTree>
+ </root>
